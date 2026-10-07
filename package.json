@@ -1,6 +1,6 @@
 {
   "name": "centauri-qotd-generator",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": true,
   "scripts": {
     "studio": "remotion studio src/index.ts",
@@ -16,5 +16,6 @@
     "@types/node": "^22.0.0",
     "tsx": "^4.0.0",
     "typescript": "^5.0.0"
-  }
+  },
+  "type": "module"
 }
