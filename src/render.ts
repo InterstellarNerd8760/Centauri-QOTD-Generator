@@ -2,8 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { bundle } from "@remotion/bundler";
 import { renderMedia, selectComposition } from "@remotion/renderer";
-import { totalSecondsFor } from "./QotdVideo";
-import type { Qotd } from "./types";
+import { totalSecondsFor } from "./QotdVideo.tsx";
+import type { Qotd } from "./types.ts";
 
 async function main() {
   const id = process.argv[2];
