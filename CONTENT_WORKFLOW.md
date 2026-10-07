@@ -1,35 +1,59 @@
 # Content Workflow
 
-The entire Technician pool is the content engine. We do not invent a new question every morning.
+The question pool is the content engine. The video format is the reusable production system.
 
-At one post per day, the pool provides a multi-year runway. The queue exists so we consume it deliberately and never accidentally repeat a question.
+## Selection
 
-## Queue states
+Do not assume questions must be published in source-file order.
 
-- unpublished — available
-- prototype — used during format development
-- review — selected for the next post
-- rendered — video generated and visually checked
-- published — posted
-- hold — temporarily excluded
+The queue can support randomized or scheduled selection. The recommended starting strategy is a rotating exam class:
+
+- Day 1: Technician
+- Day 2: General
+- Day 3: Amateur Extra
+- repeat
+
+Within each exam class, select questions using a controlled randomization method rather than simply taking T1A01, T1A02, T1A03 in order.
+
+This keeps the feed varied while preserving a deterministic record of what has already been used.
+
+## States
+
+- unpublished
+- prototype
+- review
+- rendered
+- published
+- hold
 
 ## Daily process
 
-1. Take the first unpublished question in sequence order.
-2. Review the question, four choices, answer, and explanation.
-3. Mark it review.
-4. Render it.
+1. Select the next eligible question.
+2. Review its question, choices, answer, and explanation.
+3. Verify the exam class.
+4. Render the video.
 5. Watch the complete MP4.
 6. Publish.
-7. Mark it published and add the publish date.
-8. Move to the next question tomorrow.
+7. Record publication metadata.
+8. Select the next question.
 
-Skip a question only for a documented reason: factual review, outdated material, awkward rendering, or near-duplicate recent content.
+## Selection constraints
 
-The renderer should not change for individual questions. Template improvements happen once and propagate to the whole series.
+Avoid:
+
+- recently used questions
+- near-duplicate concepts when possible
+- questions with known rendering problems
+- questions on hold
+
+A future selector should support:
+
+- exam rotation
+- seeded randomness
+- recent-history avoidance
+- topic balancing
+- manual overrides
 
 ## Future automation
 
-The same queue can later drive an automated workflow:
-
-pool → next question → render → QA → social caption/package → publish tracking.
+pool → selector → content QA → renderer → visual QA → caption/package → publish tracking
