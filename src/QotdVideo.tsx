@@ -1,1 +1,379 @@
-import React from"react";import{AbsoluteFill,useCurrentFrame,useVideoConfig}from"remotion";import{theme}from"./theme";import type{Qotd}from"./types";const L=["A","B","C","D"];const wrap=(s:string,n:number)=>{const a=s.split(" "),o:string[]=[];let l="";for(const w of a){if((l+" "+w).trim().length>n&&l){o.push(l);l=w}else l=(l+" "+w).trim()}if(l)o.push(l);return o};export const QotdVideo:React.FC<{qotd:Qotd}>=({qotd})=>{const f=useCurrentFrame(),{fps}=useVideoConfig(),t=f/fps,cd=qotd.countdownSeconds??8;const s=t<2?"question":t<2+cd?"countdown":t<13?"answer":t<21?"explanation":"outro";const left=Math.max(1,Math.ceil(cd-(t-2)));return <AbsoluteFill style={{background:theme.colors.background,color:theme.colors.text,fontFamily:"Arial,sans-serif",padding:26,boxSizing:"border-box"}}><div style={{height:3,background:theme.colors.blue,position:"absolute",top:0,left:0,right:0}}/><div style={{display:"flex",justifyContent:"space-between",marginBottom:22}}><b style={{letterSpacing:2,color:theme.colors.blueBright}}>CENTAURI ACADEMY</b><small style={{color:theme.colors.muted}}>QUESTION OF THE DAY</small></div>{s==="outro"?<div style={{height:"85%",display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",textAlign:"center"}}><b style={{color:theme.colors.blueBright,letterSpacing:2}}>DID YOU GET IT?</b><h1>Practice this and<br/>1,431+ more questions free.</h1><b style={{color:theme.colors.blueBright}}>centauriacademy.app</b></div>:<><h1 style={{fontSize:29,lineHeight:1.18}}>{wrap(qotd.question,34).map((x,i)=><div key={i}>{x}</div>)}</h1><div style={{display:"grid",gap:11}}>{qotd.answers.map((a,i)=>{const c=L[i]===qotd.correct&&s==="answer";return <div key={a} style={{padding:15,minHeight:76,borderRadius:15,border:"1px solid "+(c?theme.colors.green:theme.colors.border),background:c?theme.colors.greenSoft:theme.colors.panel,display:"flex",alignItems:"center"}}><b style={{width:35,height:35,borderRadius:9,background:c?theme.colors.green:theme.colors.blueSoft,display:"flex",alignItems:"center",justifyContent:"center",marginRight:13}}>{L[i]}</b><span>{a.replace(/^[A-D]\.\s*/,"")}</span></div>})}</div>{s==="countdown"&&<div style={{position:"absolute",bottom:32,left:0,right:0,textAlign:"center"}}><strong style={{fontSize:56,color:theme.colors.blueBright}}>{left}</strong><div style={{fontSize:11,letterSpacing:2,color:theme.colors.muted}}>PICK A, B, C, OR D</div></div>}{s==="answer"&&<div style={{marginTop:20,textAlign:"center",color:theme.colors.green,fontWeight:900,letterSpacing:2}}>ANSWER {qotd.correct}</div>}{s==="explanation"&&<div style={{marginTop:18,padding:17,borderRadius:15,border:"1px solid "+theme.colors.green,background:theme.colors.panel}}><b style={{color:theme.colors.green,letterSpacing:2}}>WHY?</b><p style={{fontSize:14,lineHeight:1.43}}>{wrap(qotd.explanation,52).map((x,i)=><span key={i}>{x}<br/></span>)}</p></div>}</>}</AbsoluteFill>};
+import React from "react";
+import {
+  AbsoluteFill,
+  useCurrentFrame,
+  useVideoConfig,
+} from "remotion";
+import { theme } from "./theme";
+import type { AnswerLetter, Qotd } from "./types";
+
+const letters: AnswerLetter[] = ["A", "B", "C", "D"];
+
+function wrapText(text: string, maxChars: number): string[] {
+  const words = text.split(/\s+/);
+  const lines: string[] = [];
+  let line = "";
+
+  for (const word of words) {
+    const candidate = (line + " " + word).trim();
+
+    if (candidate.length > maxChars && line) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = candidate;
+    }
+  }
+
+  if (line) {
+    lines.push(line);
+  }
+
+  return lines;
+}
+
+function Card({
+  children,
+  style,
+}: {
+  children: React.ReactNode;
+  style?: React.CSSProperties;
+}) {
+  return (
+    <div
+      style={{
+        background: theme.colors.panel,
+        border: `1px solid ${theme.colors.border}`,
+        borderRadius: 15,
+        boxSizing: "border-box",
+        ...style,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  const countdownSeconds =
+    qotd.countdownSeconds ?? theme.timing.countdown;
+
+  const introEnd = theme.timing.intro;
+  const countdownEnd = introEnd + countdownSeconds;
+  const answerEnd = countdownEnd + theme.timing.answer;
+  const explanationEnd = answerEnd + theme.timing.explanation;
+
+  const time = frame / fps;
+
+  const scene =
+    time < introEnd
+      ? "question"
+      : time < countdownEnd
+        ? "countdown"
+        : time < answerEnd
+          ? "answer"
+          : time < explanationEnd
+            ? "explanation"
+            : "outro";
+
+  const elapsed = Math.max(
+    0,
+    Math.min(countdownSeconds, time - introEnd),
+  );
+
+  const countdownLeft = Math.max(
+    1,
+    Math.ceil(countdownSeconds - elapsed),
+  );
+
+  const progress = 1 - elapsed / countdownSeconds;
+
+  return (
+    <AbsoluteFill
+      style={{
+        background: theme.colors.background,
+        color: theme.colors.text,
+        fontFamily: "Arial, Helvetica, sans-serif",
+        padding: "26px 26px 24px",
+        boxSizing: "border-box",
+        overflow: "hidden",
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 3,
+          background: theme.colors.blue,
+          transform: `scaleX(${scene === "countdown" ? progress : 1})`,
+          transformOrigin: "left",
+        }}
+      />
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: 22,
+        }}
+      >
+        <div
+          style={{
+            fontSize: 14,
+            fontWeight: 800,
+            letterSpacing: 2.1,
+            color: theme.colors.blueBright,
+          }}
+        >
+          CENTAURI ACADEMY
+        </div>
+
+        <div
+          style={{
+            fontSize: 10,
+            fontWeight: 700,
+            letterSpacing: 1.2,
+            color: theme.colors.muted,
+          }}
+        >
+          QUESTION OF THE DAY
+        </div>
+      </div>
+
+      {scene !== "outro" ? (
+        <>
+          <div
+            style={{
+              fontSize: 29,
+              lineHeight: 1.18,
+              fontWeight: 800,
+              letterSpacing: -0.6,
+              marginBottom: 24,
+            }}
+          >
+            {wrapText(qotd.question, 34).map((line, index) => (
+              <div key={index}>{line}</div>
+            ))}
+          </div>
+
+          <div style={{ display: "grid", gap: 11 }}>
+            {qotd.answers.map((answer, index) => {
+              const letter = letters[index];
+              const isCorrect = letter === qotd.correct;
+              const revealed = scene === "answer";
+
+              return (
+                <Card
+                  key={letter}
+                  style={{
+                    minHeight: 76,
+                    padding: "14px 15px",
+                    display: "flex",
+                    alignItems: "center",
+                    borderColor:
+                      revealed && isCorrect
+                        ? theme.colors.green
+                        : theme.colors.border,
+                    background:
+                      revealed && isCorrect
+                        ? theme.colors.greenSoft
+                        : theme.colors.panel,
+                    boxShadow:
+                      revealed && isCorrect
+                        ? "0 0 18px rgba(34, 211, 137, 0.18)"
+                        : "none",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: 35,
+                      height: 35,
+                      borderRadius: 9,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginRight: 13,
+                      flexShrink: 0,
+                      fontSize: 15,
+                      fontWeight: 900,
+                      background:
+                        revealed && isCorrect
+                          ? theme.colors.green
+                          : theme.colors.blueSoft,
+                      color: theme.colors.text,
+                    }}
+                  >
+                    {letter}
+                  </div>
+
+                  <div
+                    style={{
+                      fontSize: 16,
+                      lineHeight: 1.22,
+                      fontWeight: 650,
+                    }}
+                  >
+                    {answer.replace(/^[A-D]\.\s*/, "")}
+                  </div>
+                </Card>
+              );
+            })}
+          </div>
+
+          {scene === "countdown" && (
+            <div
+              style={{
+                position: "absolute",
+                left: 26,
+                right: 26,
+                bottom: 32,
+                textAlign: "center",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: 56,
+                  fontWeight: 900,
+                  color: theme.colors.blueBright,
+                  lineHeight: 1,
+                }}
+              >
+                {countdownLeft}
+              </div>
+
+              <div
+                style={{
+                  marginTop: 8,
+                  fontSize: 11,
+                  letterSpacing: 1.7,
+                  color: theme.colors.muted,
+                  fontWeight: 800,
+                }}
+              >
+                PICK A, B, C, OR D
+              </div>
+            </div>
+          )}
+
+          {scene === "answer" && (
+            <div
+              style={{
+                marginTop: 20,
+                textAlign: "center",
+                fontSize: 13,
+                fontWeight: 900,
+                letterSpacing: 2,
+                color: theme.colors.green,
+              }}
+            >
+              ANSWER {qotd.correct}
+            </div>
+          )}
+
+          {scene === "explanation" && (
+            <Card
+              style={{
+                marginTop: 18,
+                padding: 17,
+                borderColor: theme.colors.green,
+              }}
+            >
+              <div
+                style={{
+                  fontSize: 11,
+                  fontWeight: 900,
+                  letterSpacing: 1.8,
+                  color: theme.colors.green,
+                  marginBottom: 10,
+                }}
+              >
+                WHY?
+              </div>
+
+              <div
+                style={{
+                  fontSize: 14,
+                  lineHeight: 1.43,
+                }}
+              >
+                {wrapText(qotd.explanation, 52).map((line, index) => (
+                  <div key={index}>{line}</div>
+                ))}
+              </div>
+            </Card>
+          )}
+        </>
+      ) : (
+        <div
+          style={{
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
+            padding: "0 18px",
+          }}
+        >
+          <div
+            style={{
+              fontSize: 13,
+              fontWeight: 900,
+              letterSpacing: 2,
+              color: theme.colors.blueBright,
+              marginBottom: 18,
+            }}
+          >
+            DID YOU GET IT?
+          </div>
+
+          <div
+            style={{
+              fontSize: 25,
+              lineHeight: 1.2,
+              fontWeight: 850,
+              marginBottom: 16,
+            }}
+          >
+            Practice this and
+            <br />
+            hundreds more questions free.
+          </div>
+
+          <div
+            style={{
+              fontSize: 17,
+              fontWeight: 850,
+              color: theme.colors.blueBright,
+            }}
+          >
+            centauriacademy.app
+          </div>
+        </div>
+      )}
+
+      <div
+        style={{
+          position: "absolute",
+          bottom: 12,
+          left: 26,
+          right: 26,
+          display: "flex",
+          justifyContent: "space-between",
+          fontSize: 9,
+          color: theme.colors.muted,
+          letterSpacing: 1,
+        }}
+      >
+        <span>{qotd.id}</span>
+        <span>FREE HAM-RADIO STUDY</span>
+      </div>
+    </AbsoluteFill>
+  );
+};

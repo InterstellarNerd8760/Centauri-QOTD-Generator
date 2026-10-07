@@ -1,1 +1,34 @@
-import{Composition}from"remotion";import{QotdVideo}from"./QotdVideo";import{theme,totalSeconds}from"./theme";import type{Qotd}from"./types";const sample:Qotd={id:"T1B02",question:"Which amateur-radio license class gives an operator privileges on VHF bands commonly used for satellite contacts?",answers:["A. Technician","B. General","C. Amateur Extra","D. Any license class"],correct:"A",explanation:"Technician-class operators have VHF privileges, including portions of the 2-meter band commonly used for amateur satellite and ISS contacts. You do not need a General-class license or special NASA approval for an amateur-radio contact with the ISS when the station is operating.",countdownSeconds:8};export const RemotionRoot=()=> <Composition id="QOTD" component={QotdVideo} durationInFrames={totalSeconds*theme.fps} fps={theme.fps} width={theme.width} height={theme.height} defaultProps={{qotd:sample}}/>;
+import { Composition } from "remotion";
+import { QotdVideo } from "./QotdVideo";
+import { theme, totalSeconds } from "./theme";
+import type { Qotd } from "./types";
+
+const sample: Qotd = {
+  sequence: 14,
+  exam: "technician",
+  id: "T1B02",
+  group: "T1B",
+  question:
+    "Which of the following U.S. amateur radio operators are allowed to contact the International Space Station (ISS) on VHF bands?",
+  answers: [
+    "A. Only amateurs with a General class or higher license",
+    "B. Any amateur with a Technician class or higher license",
+    "C. Only amateurs with a General class or higher license, and NASA approval",
+    "D. Any amateurs with a Technician class or higher license, and NASA approval",
+  ],
+  correct: "B",
+  explanation:
+    "The ISS operates on VHF frequencies within the privileges of Technician class licensees, so any Technician or higher may contact the ISS. No special NASA approval is required.",
+};
+
+export const RemotionRoot = () => (
+  <Composition
+    id="QOTD"
+    component={QotdVideo}
+    durationInFrames={totalSeconds * theme.fps}
+    fps={theme.fps}
+    width={theme.width}
+    height={theme.height}
+    defaultProps={{ qotd: sample }}
+  />
+);

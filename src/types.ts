@@ -1,1 +1,15 @@
-export type Letter="A"|"B"|"C"|"D";export type Qotd={id:string;question:string;answers:[string,string,string,string];correct:Letter;explanation:string;countdownSeconds?:number};
+export type AnswerLetter = "A" | "B" | "C" | "D";
+
+export type ExamType = "technician" | "general" | "extra";
+
+export type Qotd = {
+  sequence: number;
+  exam: ExamType;
+  id: string;
+  group: string;
+  question: string;
+  answers: [string, string, string, string];
+  correct: AnswerLetter;
+  explanation: string;
+  countdownSeconds?: number;
+};
