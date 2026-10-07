@@ -26,7 +26,7 @@ async function main() {
   }
 
   const serveUrl = await bundle({
-    entryPoint: path.resolve("src", "index.ts"),
+    entryPoint: path.resolve("src", "index.tsx"),
   });
 
   const composition = await selectComposition({
