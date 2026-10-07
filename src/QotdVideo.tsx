@@ -7,8 +7,8 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { theme } from "./theme";
-import type { AnswerLetter, ExamType, Qotd } from "./types";
+import { theme } from "./theme.ts";
+import type { AnswerLetter, ExamType, Qotd } from "./types.ts";
 
 const letters: AnswerLetter[] = ["A", "B", "C", "D"];
 
