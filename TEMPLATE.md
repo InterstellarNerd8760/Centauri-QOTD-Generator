@@ -109,7 +109,7 @@ Use:
 
 Then:
 
-> CentauriAcademy.app
+> https://centauriacademy.app
 
 Do not pitch Centauri Plus in QOTD videos.
 
