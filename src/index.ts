@@ -1,20 +1,20 @@
 import { Composition } from "remotion";
-import { QotdVideo } from "./QotdVideo";
-import { theme, totalSeconds } from "./theme";
+import { QotdVideo, totalSecondsFor } from "./QotdVideo";
+import { theme } from "./theme";
 import type { Qotd } from "./types";
 
 const sample: Qotd = {
-  sequence: 14,
+  sequence: 13,
   exam: "technician",
   id: "T1B02",
   group: "T1B",
   question:
     "Which of the following U.S. amateur radio operators are allowed to contact the International Space Station (ISS) on VHF bands?",
   answers: [
-    "A. Only amateurs with a General class or higher license",
-    "B. Any amateur with a Technician class or higher license",
-    "C. Only amateurs with a General class or higher license, and NASA approval",
-    "D. Any amateurs with a Technician class or higher license, and NASA approval",
+    "Only amateurs with a General class or higher license",
+    "Any amateur with a Technician class or higher license",
+    "Only amateurs with a General class or higher license, and NASA approval",
+    "Any amateurs with a Technician class or higher license, and NASA approval",
   ],
   correct: "B",
   explanation:
@@ -25,7 +25,7 @@ export const RemotionRoot = () => (
   <Composition
     id="QOTD"
     component={QotdVideo}
-    durationInFrames={totalSeconds * theme.fps}
+    durationInFrames={Math.ceil(totalSecondsFor(sample) * theme.fps)}
     fps={theme.fps}
     width={theme.width}
     height={theme.height}
