@@ -1,0 +1,1 @@
+export type Letter="A"|"B"|"C"|"D";export type Qotd={id:string;question:string;answers:[string,string,string,string];correct:Letter;explanation:string;countdownSeconds?:number};
