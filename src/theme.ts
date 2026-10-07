@@ -1,1 +1,35 @@
-export const theme={width:512,height:910,fps:30,colors:{background:"#0D1B2E",panel:"#14273D",border:"#284765",blue:"#2563EB",blueBright:"#40B5FF",blueSoft:"#1C4270",text:"#F5F8FC",muted:"#9FB1C7",green:"#22D389",greenSoft:"#123E34"},timing:{intro:2,countdown:8,answer:3,explanation:8,outro:3}};export const totalSeconds=24;
+export const theme = {
+  width: 1080,
+  height: 1920,
+  fps: 30,
+
+  colors: {
+    background: "#0D1B2E",
+    panel: "#14273D",
+    border: "#284765",
+    blue: "#2563EB",
+    blueBright: "#40B5FF",
+    blueSoft: "#1C4270",
+    text: "#F5F8FC",
+    muted: "#9FB1C7",
+    green: "#22D389",
+    greenSoft: "#123E34",
+  },
+
+  timing: {
+    hook: 3,
+    question: 3,
+    countdown: 8,
+    answer: 3,
+    explanation: 8,
+    outro: 3,
+  },
+} as const;
+
+export const totalSeconds =
+  theme.timing.hook +
+  theme.timing.question +
+  theme.timing.countdown +
+  theme.timing.answer +
+  theme.timing.explanation +
+  theme.timing.outro;
