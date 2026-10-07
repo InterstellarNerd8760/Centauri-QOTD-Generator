@@ -2,12 +2,13 @@ import fs from "node:fs";
 import path from "node:path";
 import { bundle } from "@remotion/bundler";
 import { renderMedia, selectComposition } from "@remotion/renderer";
+import { totalSecondsFor } from "./QotdVideo";
 import type { Qotd } from "./types";
 
 const id = process.argv[2];
 
 if (!id) {
-  throw new Error("Usage: npm run qotd -- T1A01");
+  throw new Error("Usage: npm run qotd -- T1B02");
 }
 
 const dataPath = path.resolve("content", "questions.json");
@@ -33,6 +34,8 @@ const composition = await selectComposition({
   inputProps: { qotd },
 });
 
+composition.durationInFrames = Math.ceil(totalSecondsFor(qotd) * composition.fps);
+
 fs.mkdirSync(path.dirname(outputPath), { recursive: true });
 
 await renderMedia({
@@ -43,4 +46,6 @@ await renderMedia({
   inputProps: { qotd },
 });
 
-console.log(`Rendered ${outputPath}`);
+console.log(
+  `Rendered ${outputPath} (${totalSecondsFor(qotd).toFixed(1)} seconds)`,
+);
