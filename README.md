@@ -1,75 +1,47 @@
 # Centauri QOTD Generator
 
-Production content + rendering system for Centauri Academy's daily Question of the Day videos.
+Production content and rendering system for Centauri Academy's daily Question of the Day videos.
 
-## The important part
+## Content pool
 
-This is **not** a one-question demo repository.
+The repository contains the full normalized Academy question pool across:
 
-It contains the full Technician question pool, a sequential publishing queue, the canonical video specification, and the renderer.
+- 409 Technician questions
+- 423 General questions
+- 603 Amateur Extra questions
+- **1,435 total questions**
 
-Current pool size: **409 questions** across **35 groups**.
-
-Group counts:
-
-- T1A: 11
-- T1B: 12
-- T1C: 11
-- T1D: 12
-- T1E: 11
-- T1F: 11
-- T2A: 11
-- T2B: 14
-- T2C: 12
-- T3A: 12
-- T3B: 12
-- T3C: 11
-- T4A: 12
-- T4B: 11
-- T5A: 11
-- T5B: 13
-- T5C: 12
-- T5D: 14
-- T6A: 11
-- T6B: 12
-- T6C: 12
-- T6D: 11
-- T7A: 11
-- T7B: 11
-- T7C: 11
-- T7D: 11
-- T8A: 12
-- T8B: 12
-- T8C: 11
-- T8D: 12
-- T9A: 11
-- T9B: 12
-- T0A: 12
-- T0B: 11
-- T0C: 13
+At one post per day, that is roughly 3.9 years of source content before accounting for selection rules or future additions.
 
 ## Repository layout
 
-- `content/questions.json` — full normalized question pool
-- `content/queue.json` — one-by-one publishing state
+- `content/questions.json` — normalized question pool
+- `content/queue.json` — publishing state
+- `VIDEO_SPEC.md` — detailed production specification
 - `VIDEO_GUIDELINES.md` — visual/editorial rules
-- `CONTENT_WORKFLOW.md` — daily operating procedure
-- `TEMPLATE.md` — canonical 24-second format
+- `CONTENT_WORKFLOW.md` — selection and daily operating procedure
+- `TEMPLATE.md` — canonical scene template
 - `src/` — Remotion renderer
-- `out/` — local rendered MP4s (ignored by Git)
+- `out/` — local renders, ignored by Git
 
-## Daily operation
+## Rendering
 
-Select the first `unpublished` item in `content/queue.json`, review it, render it, publish it, and mark it published.
+The renderer is designed around structured question data rather than manually edited videos.
 
-Tomorrow's system should require almost no creative engineering. The creative work is choosing/reviewing the content; the format is already solved.
+The core visual system is built in Remotion so countdowns, transitions, cards, and typography are deterministic.
 
-## Commands
+Voice is optional and can be added later.
 
-```bash
-npm install
-npm run studio
-npm run qotd -- T1A01
-```
+The production canvas is 1080×1920 at 30fps.
 
-Do not minify source files. Readability and maintainability matter.
+## Question selection
+
+The content pool does **not** have to be consumed sequentially.
+
+A future selector should rotate Technician → General → Amateur Extra while using controlled randomness within each pool.
+
+## Current development
+
+The renderer is being rebuilt around the production specification. The goal is a polished first production template rather than a pile of one-off edits.
+
+Source files must remain readable and maintainable. Do not minify them.
