@@ -1,4 +1,4 @@
-import { Composition } from "remotion";
+import { Composition, registerRoot } from "remotion";
 import { QotdVideo, totalSecondsFor } from "./QotdVideo.tsx";
 import { theme } from "./theme.ts";
 import type { Qotd } from "./types.ts";
@@ -32,3 +32,5 @@ export const RemotionRoot = () => (
     defaultProps={{ qotd: sample }}
   />
 );
+
+registerRoot(RemotionRoot);
