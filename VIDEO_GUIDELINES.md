@@ -1,49 +1,45 @@
 # Centauri QOTD Video Guidelines
 
-Every QOTD is part of the same recurring Centauri Academy series. The format should be recognizable and consistent.
+## Core rule
 
-## Fixed 24-second structure
+Every QOTD should feel like the same Centauri Academy product, even though the question changes.
 
-| Scene | Time | Rules |
-|---|---:|---|
-| Question | 2s | Large question, four answer cards |
-| Countdown | 8s | Real 8→1 countdown and matching progress bar |
-| Answer | 3s | Correct answer becomes Centauri green |
-| Explanation | 8s | WHY? card; readable at normal speed |
-| CTA | 3s | Free-practice CTA and centauriacademy.app |
+The format is a reusable educational interface, not a one-off video.
 
-## Visual system
+## Required structure
 
-- Background: #0D1B2E
-- Panel: #14273D
-- Border: #284765
-- Blue: #2563EB
-- Bright blue: #40B5FF
-- Correct green: #22D389
-- Bold, high-contrast typography
-- Restrained four-point/star motif
-- Technical educational interface, not generic TikTok graphics
+1. Hook: "Can you solve this [exam] ham radio exam question?"
+2. Question and four choices
+3. Reading time
+4. Real circular countdown
+5. Correct-answer reveal
+6. "And this is why" explanation
+7. Centauri Academy CTA
+
+Timing is **content-driven**. Do not force every video to a fixed 24-second runtime. Give the viewer enough time to read and understand the concept.
 
 ## Never
 
-- Talking head or B-roll in the QOTD format
-- Brainrot captions, meme edits, fake urgency, excessive zooms
-- Random stock/AI space imagery
-- Redesigning a video because one question is unusual
-- Copying another account's exact branding
+- talking head inside the standard QOTD format
+- unnecessary B-roll
+- brainrot captions
+- fake urgency
+- random stock/AI imagery
+- excessive zooms
+- unreadably small text
+- copying another creator's exact branding
+- silently changing the factual meaning of an Academy question
 
-## Editorial rules
+## QA
 
-The question, answer, and explanation come from the Academy pool. Do not silently change factual meaning. If an explanation needs shortening, preserve its meaning.
-
-## Publishing QA
-
-- [ ] Correct question and answer
-- [ ] Explanation is accurate
-- [ ] All choices readable
-- [ ] Countdown actually runs 8→1
-- [ ] Correct choice turns green
-- [ ] Explanation has enough reading time
+- [ ] Correct question
+- [ ] Correct exam class
+- [ ] All choices visible and readable
+- [ ] Countdown ring actually tracks time
+- [ ] Correct answer is correct
+- [ ] Correct choice gets green reveal
+- [ ] Explanation is accurate and readable
+- [ ] CTA is correct
 - [ ] No text clipping
-- [ ] Vertical 9:16
-- [ ] CTA URL is correct
+- [ ] 9:16 output
+- [ ] Watch the complete render before publishing
