@@ -1,7 +1,7 @@
 import { Composition } from "remotion";
-import { QotdVideo, totalSecondsFor } from "./QotdVideo";
-import { theme } from "./theme";
-import type { Qotd } from "./types";
+import { QotdVideo, totalSecondsFor } from "./QotdVideo.tsx";
+import { theme } from "./theme.ts";
+import type { Qotd } from "./types.ts";
 
 const sample: Qotd = {
   sequence: 13,
