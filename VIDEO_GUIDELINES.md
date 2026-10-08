@@ -2,7 +2,7 @@
 
 ## Core rule
 
-Every QOTD should feel like the same Centauri Academy product, even though the question changes.
+Every QOTD should feel like the same Centauri Academy product, even though the question changes. Use the official four-point white star logo at `public/assets/centauri-academy-logo.svg`.
 
 The format is a reusable educational interface, not a one-off video.
 
