@@ -601,9 +601,25 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
                 fontWeight: 650,
               }}
             >
-              {wrapText(qotd.explanation, 39).map((line, index) => (
-                <div key={index}>{line}</div>
-              ))}
+              {wrapText(qotd.explanation, 39).map((line, index) => {
+                const lineIn = interpolate(
+                  t - answerEnd - index * 0.28,
+                  [0.05, 0.28],
+                  [0, 1],
+                  { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
+                );
+                return (
+                  <div
+                    key={index}
+                    style={{
+                      opacity: lineIn,
+                      transform: `translateY(${(1 - lineIn) * 18}px)`,
+                    }}
+                  >
+                    {line}
+                  </div>
+                );
+              })}
             </div>
           </Card>
 
@@ -626,47 +642,37 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
             justifyContent: "center",
             alignItems: "center",
             textAlign: "center",
-            padding: "0 100px",
-            opacity: outroIn,
+            padding: "100px 74px",
+            opacity: 1,
             transform: `translateX(${sceneSlideX}px)`,
           }}
         >
-          <CentauriMark size={220} />
-
-          <div
+          <Card
             style={{
-              marginTop: 38,
-              fontSize: 27,
-              fontWeight: 900,
-              letterSpacing: 2.4,
-              color: theme.colors.blueBright,
+              width: "100%",
+              minHeight: 1160,
+              padding: "68px 54px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              background: theme.colors.panel,
             }}
           >
-            CENTAURI ACADEMY
-          </div>
-
-          <div
-            style={{
-              marginTop: 28,
-              fontSize: 48,
-              lineHeight: 1.15,
-              fontWeight: 950,
-              letterSpacing: -1.2,
-            }}
-          >
-            Practice thousands of questions free.
-          </div>
-
-          <div
-            style={{
-              marginTop: 34,
-              fontSize: 29,
-              fontWeight: 900,
-              color: theme.colors.blueBright,
-            }}
-          >
-            centauriacademy.app
-          </div>
+            <CentauriMark size={180} />
+            <div style={{ marginTop: 42, fontSize: 30, fontWeight: 900, letterSpacing: 2.2 }}>
+              CENTAURI ACADEMY
+            </div>
+            <div style={{ marginTop: 54, fontSize: 57, lineHeight: 1.12, fontWeight: 950, letterSpacing: -1.4 }}>
+              DID YOU GET IT?
+            </div>
+            <div style={{ marginTop: 42, fontSize: 37, lineHeight: 1.25, fontWeight: 800 }}>
+              Practice thousands of questions free.
+            </div>
+            <div style={{ marginTop: 54, fontSize: 40, fontWeight: 950, color: theme.colors.blueBright }}>
+              centauriacademy.app
+            </div>
+          </Card>
         </AbsoluteFill>
       )}
 
