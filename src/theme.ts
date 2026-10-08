@@ -17,11 +17,11 @@ export const theme = {
   },
 
   timing: {
-    hook: 3,
+    hook: 2.5,
     question: 3,
-    countdown: 8,
-    answer: 3,
-    explanation: 8,
+    countdown: 4,
+    answer: 2.5,
+    explanation: 7,
     outro: 3,
   },
 } as const;
