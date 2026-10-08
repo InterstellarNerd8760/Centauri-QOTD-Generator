@@ -71,10 +71,12 @@ Primary blue #2563EB
 Bright blue #40B5FF
 Correct green #22D389
 Green panel #123E34
+
+Reserve green for the correct answer and the countdown indicator/ring. Keep general headings, explanation framing, the logo, and the URL in neutral white or blue. The website URL must always be exactly lowercase: `centauriacademy.app`.
 Main text #F5F8FC
 Muted text #9FB1C7
 
-Use a subtle four-point/star motif and restrained technical/aerospace visual language.
+Use the official Centauri Academy four-point white star logo from `public/assets/centauri-academy-logo.svg` in the header and CTA. Do not approximate it with a generic icon. Keep the surrounding technical/aerospace visual language restrained.
 
 Do not copy another account's exact branding.
 
@@ -139,7 +141,8 @@ Every render must be checked for:
 - synchronized countdown
 - correct green reveal
 - readable explanation
-- correct CTA
+- correct CTA, with `centauriacademy.app` fully lowercase
+- official Centauri Academy logo asset used consistently
 - no clipping
 - no accidental external branding
 
