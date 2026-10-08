@@ -22,7 +22,7 @@ const examLabels: Record<ExamType, string> = {
 
 export function explanationSeconds(qotd: Qotd): number {
   const words = qotd.explanation.trim().split(/\s+/).filter(Boolean).length;
-  return Math.max(8, Math.ceil(words / 2.35));
+  return Math.max(7, Math.ceil(words / 2.4));
 }
 
 export function totalSecondsFor(qotd: Qotd): number {
@@ -352,6 +352,18 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
               ? "explanation"
               : "outro";
 
+  const sceneStart =
+    scene === "hook" ? 0 :
+    scene === "question" ? hookEnd :
+    scene === "countdown" ? questionEnd :
+    scene === "answer" ? countdownEnd :
+    scene === "explanation" ? answerEnd : explanationEnd;
+  const sceneElapsed = Math.max(0, t - sceneStart);
+  const sceneSlideX = interpolate(sceneElapsed, [0, 0.24], [90, 0], {
+    extrapolateRight: "clamp",
+    easing: Easing.out(Easing.cubic),
+  });
+
   const countdownElapsed = Math.max(
     0,
     Math.min(countdownSeconds, t - questionEnd),
@@ -434,8 +446,8 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
           style={{
             justifyContent: "center",
             padding: "0 100px",
-            opacity: hookIn,
-            transform: `translateY(${(1 - hookIn) * 35}px)`,
+            opacity: 1,
+            transform: `translateX(${sceneSlideX}px)`,
           }}
         >
           <Header exam={qotd.exam} />
@@ -484,6 +496,7 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
           style={{
             opacity: scene === "answer" ? answerIn : 1,
             padding: "20px 34px 40px",
+            transform: `translateX(${sceneSlideX}px)`,
           }}
         >
           <Header exam={qotd.exam} />
@@ -535,7 +548,7 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
           <div style={{ position: "absolute", top: 70, left: 58, right: 58 }}>
             <Header exam={qotd.exam} />
           </div>
-          <div style={{ textAlign: "center", fontSize: 28, fontWeight: 900, letterSpacing: 3, color: theme.colors.text }}>
+          <div style={{ textAlign: "center", fontSize: 28, fontWeight: 900, letterSpacing: 3, color: theme.colors.text, transform: `translateX(${sceneSlideX}px)` }}>
             LOCK IN YOUR ANSWER
           </div>
           <div style={{ marginTop: 34, transform: "scale(1.0)" }}>
@@ -555,7 +568,7 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
           style={{
             padding: "86px 58px 90px",
             opacity: explanationIn,
-            transform: `translateY(${(1 - explanationIn) * 28}px)`,
+            transform: `translateX(${sceneSlideX}px)`,
           }}
         >
           <Header exam={qotd.exam} />
@@ -576,14 +589,14 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
             style={{
               padding: "56px 48px",
               borderColor: theme.colors.border,
-              minHeight: 620,
+              minHeight: 790,
               display: "flex",
               alignItems: "center",
             }}
           >
             <div
               style={{
-                fontSize: 43,
+                fontSize: 46,
                 lineHeight: 1.38,
                 fontWeight: 650,
               }}
@@ -615,7 +628,7 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
             textAlign: "center",
             padding: "0 100px",
             opacity: outroIn,
-            transform: `translateY(${(1 - outroIn) * 24}px)`,
+            transform: `translateX(${sceneSlideX}px)`,
           }}
         >
           <CentauriMark size={220} />
@@ -641,9 +654,7 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
               letterSpacing: -1.2,
             }}
           >
-            Study this question
-            <br />
-            and hundreds more like it.
+            Practice thousands of questions free.
           </div>
 
           <div
