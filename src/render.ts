@@ -45,6 +45,8 @@ async function main() {
     composition,
     serveUrl,
     codec: "h264",
+    crf: 16,
+    x264Preset: "slow",
     outputLocation: outputPath,
     inputProps: { qotd },
   });
