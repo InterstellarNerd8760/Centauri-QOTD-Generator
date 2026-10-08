@@ -2,6 +2,8 @@ import React from "react";
 import {
   AbsoluteFill,
   Easing,
+  Img,
+  staticFile,
   interpolate,
   spring,
   useCurrentFrame,
@@ -79,30 +81,19 @@ function Card({
   );
 }
 
-function CentauriMark() {
+function CentauriMark({ size = 52 }: { size?: number }) {
   return (
-    <div
+    <Img
+      src={staticFile("assets/centauri-academy-logo.svg")}
+      width={size}
+      height={size}
       style={{
-        width: 34,
-        height: 34,
-        transform: "rotate(45deg)",
+        display: "block",
         borderRadius: 8,
-        background: theme.colors.blue,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        boxShadow: "0 0 24px rgba(37, 99, 235, 0.32)",
+        boxShadow: "0 0 24px rgba(37, 99, 235, 0.18)",
+        flexShrink: 0,
       }}
-    >
-      <div
-        style={{
-          width: 9,
-          height: 9,
-          borderRadius: "50%",
-          background: theme.colors.text,
-        }}
-      />
-    </div>
+    />
   );
 }
 
@@ -290,7 +281,7 @@ function CountdownRing({
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke={theme.colors.blueBright}
+          stroke={theme.colors.green}
           strokeWidth={stroke}
           strokeLinecap="round"
           strokeDasharray={circumference}
@@ -591,7 +582,7 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
               fontSize: 29,
               fontWeight: 950,
               letterSpacing: 3,
-              color: theme.colors.green,
+              color: theme.colors.text,
               marginBottom: 30,
             }}
           >
@@ -601,8 +592,7 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
           <Card
             style={{
               padding: 44,
-              borderColor: theme.colors.green,
-              boxShadow: "0 0 50px rgba(34, 211, 137, 0.08)",
+              borderColor: theme.colors.border,
             }}
           >
             <div
@@ -642,7 +632,7 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
             transform: `translateY(${(1 - outroIn) * 24}px)`,
           }}
         >
-          <CentauriMark />
+          <CentauriMark size={220} />
 
           <div
             style={{
@@ -678,7 +668,7 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
               color: theme.colors.blueBright,
             }}
           >
-            CentauriAcademy.app
+            centauriacademy.app
           </div>
         </AbsoluteFill>
       )}
