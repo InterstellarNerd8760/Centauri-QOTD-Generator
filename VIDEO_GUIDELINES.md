@@ -2,7 +2,7 @@
 
 ## Core rule
 
-Every QOTD should feel like the same Centauri Academy product, even though the question changes. Use the official four-point white star logo at `public/assets/centauri-academy-logo.svg`.
+Every QOTD should feel like the same Centauri Academy product, even though the question changes. Start immediately on the hook (no black frame), use distinct slide cuts, animate explanation lines subtly, and end with a dedicated “DID YOU GET IT?” CTA card. Use the official four-point white star logo at `public/assets/centauri-academy-logo.svg`.
 
 The format is a reusable educational interface, not a one-off video.
 
