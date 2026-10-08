@@ -247,7 +247,7 @@ function CountdownRing({
   seconds: number;
   progress: number;
 }) {
-  const size = 230;
+  const size = 650;
   const stroke = 14;
   const radius = (size - stroke) / 2;
   const circumference = 2 * Math.PI * radius;
@@ -301,7 +301,7 @@ function CountdownRing({
       >
         <div
           style={{
-            fontSize: 74,
+            fontSize: 180,
             lineHeight: 1,
             fontWeight: 950,
           }}
@@ -479,12 +479,11 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
         </AbsoluteFill>
       )}
 
-      {(scene === "question" ||
-        scene === "countdown" ||
-        scene === "answer") && (
+      {(scene === "question" || scene === "answer") && (
         <div
           style={{
             opacity: scene === "answer" ? answerIn : 1,
+            padding: "20px 34px 40px",
           }}
         >
           <Header exam={qotd.exam} />
@@ -505,50 +504,7 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
 
           <AnswerCards qotd={qotd} revealed={scene === "answer"} />
 
-          {scene === "countdown" && (
-            <div
-              style={{
-                position: "absolute",
-                left: 58,
-                right: 58,
-                bottom: 54,
-                padding: "24px 30px",
-                borderRadius: 30,
-                background: "rgba(13, 27, 46, 0.94)",
-                border: `2px solid ${theme.colors.border}`,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 34,
-              }}
-            >
-              <CountdownRing
-                seconds={countdownLeft}
-                progress={countdownProgress}
-              />
-              <div>
-                <div
-                  style={{
-                    fontSize: 24,
-                    fontWeight: 900,
-                    letterSpacing: 1.5,
-                    color: theme.colors.blueBright,
-                  }}
-                >
-                  LOCK IN YOUR ANSWER
-                </div>
-                <div
-                  style={{
-                    marginTop: 10,
-                    fontSize: 17,
-                    color: theme.colors.muted,
-                  }}
-                >
-                  A · B · C · D
-                </div>
-              </div>
-            </div>
-          )}
+
 
           {scene === "answer" && (
             <div
@@ -567,10 +523,37 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
         </div>
       )}
 
+      {scene === "countdown" && (
+        <AbsoluteFill
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "90px 50px",
+            background: "radial-gradient(circle at 50% 48%, #17385A 0%, #0D1B2E 62%)",
+          }}
+        >
+          <div style={{ position: "absolute", top: 70, left: 58, right: 58 }}>
+            <Header exam={qotd.exam} />
+          </div>
+          <div style={{ textAlign: "center", fontSize: 28, fontWeight: 900, letterSpacing: 3, color: theme.colors.text }}>
+            LOCK IN YOUR ANSWER
+          </div>
+          <div style={{ marginTop: 34, transform: "scale(1.0)" }}>
+            <CountdownRing seconds={countdownLeft} progress={countdownProgress} />
+          </div>
+          <div style={{ marginTop: 30, fontSize: 24, fontWeight: 750, color: theme.colors.muted, letterSpacing: 2 }}>
+            A  /  B  /  C  /  D
+          </div>
+          <div style={{ position: "absolute", bottom: 76, fontSize: 22, color: theme.colors.muted }}>
+            {qotd.id}  ·  PICK ONE
+          </div>
+        </AbsoluteFill>
+      )}
+
       {scene === "explanation" && (
         <AbsoluteFill
           style={{
-            padding: "130px 80px 100px",
+            padding: "86px 58px 90px",
             opacity: explanationIn,
             transform: `translateY(${(1 - explanationIn) * 28}px)`,
           }}
@@ -579,11 +562,11 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
 
           <div
             style={{
-              fontSize: 29,
+              fontSize: 40,
               fontWeight: 950,
               letterSpacing: 3,
               color: theme.colors.text,
-              marginBottom: 30,
+              marginBottom: 48,
             }}
           >
             AND THIS IS WHY
@@ -591,18 +574,21 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
 
           <Card
             style={{
-              padding: 44,
+              padding: "56px 48px",
               borderColor: theme.colors.border,
+              minHeight: 620,
+              display: "flex",
+              alignItems: "center",
             }}
           >
             <div
               style={{
-                fontSize: 31,
-                lineHeight: 1.42,
-                fontWeight: 600,
+                fontSize: 43,
+                lineHeight: 1.38,
+                fontWeight: 650,
               }}
             >
-              {wrapText(qotd.explanation, 56).map((line, index) => (
+              {wrapText(qotd.explanation, 39).map((line, index) => (
                 <div key={index}>{line}</div>
               ))}
             </div>
@@ -610,8 +596,8 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
 
           <div
             style={{
-              marginTop: 34,
-              fontSize: 17,
+              marginTop: 46,
+              fontSize: 24,
               color: theme.colors.muted,
               lineHeight: 1.45,
             }}
@@ -673,7 +659,7 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
         </AbsoluteFill>
       )}
 
-      <div
+      {scene !== "countdown" && scene !== "explanation" && <div
         style={{
           position: "absolute",
           left: 58,
@@ -688,7 +674,7 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
       >
         <span>{qotd.id}</span>
         <span>FREE HAM-RADIO STUDY</span>
-      </div>
+      </div> }
     </AbsoluteFill>
   );
 };
