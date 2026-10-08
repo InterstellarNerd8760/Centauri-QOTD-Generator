@@ -12,7 +12,7 @@ Hook → Question → Read → Countdown → Answer → Explanation → CTA
 
 ## Hook
 
-Use a single unified sentence based on the exam metadata:
+Start on the hook immediately—no black opening frame. Use a single unified sentence based on the exam metadata:
 
 - Technician: "Can you solve this Technician ham radio exam question?"
 - General: "Can you solve this General ham radio exam question?"
@@ -22,7 +22,7 @@ Do not show the hook and then replace it with a separate exam title card.
 
 ## Question
 
-Show the complete question and all four answer choices. Give the viewer a short reading period before the countdown.
+Show the complete question and all four answer choices. Give the viewer a short reading period before the countdown. Use a distinct slide transition between each major scene.
 
 The question must remain the dominant visual element. Answer cards must have consistent geometry and clear A/B/C/D labels.
 
@@ -46,7 +46,7 @@ Highlight the correct answer in Centauri green with a restrained glow and checkm
 
 Transition to "AND THIS IS WHY".
 
-Show the supplied explanation. Give enough time to read it comfortably. Runtime is content-driven: never force an explanation to fit a fixed 24-second template.
+Show the supplied explanation. Reveal it line-by-line with restrained motion so the scene does not freeze. Give enough time to read it comfortably. Runtime is content-driven: never force an explanation to fit a fixed 24-second template.
 
 If a question requires more explanation time, extend the scene.
 
@@ -56,7 +56,7 @@ Do not make text tiny to preserve a target runtime.
 
 Use:
 
-"Study this question and hundreds more like it."
+"DID YOU GET IT?" followed by "Practice thousands of questions free."
 
 "CentauriAcademy.app"
 
