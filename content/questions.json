@@ -8299,7 +8299,8 @@
         "To prevent excessive drive",
         "To increase overall efficiency"
       ],
-      "correct": "C"
+      "correct": "C",
+      "explanation": "Automatic level control (ALC) helps keep an RF amplifier from being driven too hard. Excessive drive can overdrive the amplifier and distort the transmitted signal, so ALC is used to prevent excessive drive."
     },
     {
       "sequence": 564,
