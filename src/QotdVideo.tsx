@@ -508,6 +508,10 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
               lineHeight: 1.12,
               fontWeight: 900,
               letterSpacing: -1.2,
+              textAlign: "center",
+              maxWidth: 900,
+              marginLeft: "auto",
+              marginRight: "auto",
             }}
           >
             {questionLines.map((line, index) => (
