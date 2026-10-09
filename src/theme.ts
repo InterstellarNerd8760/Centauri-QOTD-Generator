@@ -18,10 +18,10 @@ export const theme = {
 
   timing: {
     hook: 2.5,
-    question: 6,
+    question: 7,
     countdown: 4,
     answer: 2.5,
-    explanation: 7,
+    explanation: 6,
     outro: 3,
   },
 } as const;
