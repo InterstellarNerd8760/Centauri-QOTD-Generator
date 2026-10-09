@@ -22,9 +22,9 @@ Do not show the hook and then replace it with a separate exam title card.
 
 ## Question
 
-Show the complete question and all four answer choices. Give the viewer a short reading period before the countdown. Use a distinct slide transition between each major scene.
+Show the complete question and all four answer choices. The question/choices scene is centered both horizontally and vertically in the screen, with only the small brand header anchored at the top. Keep the question on screen for 7 seconds by default before the countdown begins. Use a distinct slide transition between each major scene.
 
-The question must remain the dominant visual element. Answer cards must have consistent geometry and clear A/B/C/D labels.
+The question must remain the dominant visual element. Answer cards must have consistent geometry and clear A/B/C/D labels. Avoid a jarring vertical jump from the centered hook to a question pinned at the top.
 
 ## Countdown
 
@@ -146,4 +146,4 @@ Every render must be checked for:
 - no clipping
 - no accidental external branding
 
-The full video should be watched before publishing.
+The full video should be watched before publishing. After publication, record the post date and platform(s) in `content/queue.json`. Never mark a prototype as published until the user confirms it is live.
