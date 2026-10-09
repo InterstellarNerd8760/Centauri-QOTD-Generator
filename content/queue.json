@@ -18,13 +18,17 @@
       "sequence": 2,
       "exam": "technician",
       "id": "T1A02",
-      "status": "unpublished"
+      "status": "rendered",
+      "rendered_on": "2026-10-08",
+      "note": "Rendered and uploaded; not yet scheduled or published."
     },
     {
       "sequence": 3,
       "exam": "technician",
       "id": "T1A03",
-      "status": "unpublished"
+      "status": "rendered",
+      "rendered_on": "2026-10-08",
+      "note": "Rendered and uploaded; not yet scheduled or published."
     },
     {
       "sequence": 4,
