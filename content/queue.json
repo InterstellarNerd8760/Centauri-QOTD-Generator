@@ -6,7 +6,13 @@
       "sequence": 1,
       "exam": "technician",
       "id": "T1A01",
-      "status": "unpublished"
+      "status": "published",
+      "published_on": "2026-10-08",
+      "platforms": [
+        "Instagram Reels",
+        "YouTube Shorts"
+      ],
+      "note": "First published QOTD. Instagram audio: royalty-free lo-fi track selected in-app. YouTube Shorts audio: Memory Reboot selected in-app."
     },
     {
       "sequence": 2,
