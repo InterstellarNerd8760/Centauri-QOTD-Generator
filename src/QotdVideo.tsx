@@ -492,52 +492,64 @@ export const QotdVideo: React.FC<{ qotd: Qotd }> = ({ qotd }) => {
       )}
 
       {(scene === "question" || scene === "answer") && (
-        <div
+        <AbsoluteFill
           style={{
+            justifyContent: "center",
+            padding: "90px 34px 74px",
             opacity: scene === "answer" ? answerIn : 1,
-            padding: "20px 34px 40px",
             transform: `translateX(${sceneSlideX}px)`,
           }}
         >
-          <Header exam={qotd.exam} />
+          <div style={{ position: "absolute", top: 28, left: 34, right: 34 }}>
+            <Header exam={qotd.exam} />
+          </div>
 
           <div
             style={{
-              marginBottom: 36,
-              fontSize: 43,
-              lineHeight: 1.12,
-              fontWeight: 900,
-              letterSpacing: -1.2,
-              textAlign: "center",
-              maxWidth: 900,
-              marginLeft: "auto",
-              marginRight: "auto",
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "stretch",
             }}
           >
-            {questionLines.map((line, index) => (
-              <div key={index}>{line}</div>
-            ))}
-          </div>
-
-          <AnswerCards qotd={qotd} revealed={scene === "answer"} />
-
-
-
-          {scene === "answer" && (
             <div
               style={{
-                marginTop: 28,
+                marginBottom: 36,
+                fontSize: 43,
+                lineHeight: 1.12,
+                fontWeight: 900,
+                letterSpacing: -1.2,
                 textAlign: "center",
-                fontSize: 25,
-                fontWeight: 950,
-                letterSpacing: 2,
-                color: theme.colors.green,
+                maxWidth: 900,
+                marginLeft: "auto",
+                marginRight: "auto",
+                width: "100%",
               }}
             >
-              THE ANSWER IS {qotd.correct}
+              {questionLines.map((line, index) => (
+                <div key={index}>{line}</div>
+              ))}
             </div>
-          )}
-        </div>
+
+            <AnswerCards qotd={qotd} revealed={scene === "answer"} />
+
+            {scene === "answer" && (
+              <div
+                style={{
+                  marginTop: 28,
+                  textAlign: "center",
+                  fontSize: 25,
+                  fontWeight: 950,
+                  letterSpacing: 2,
+                  color: theme.colors.green,
+                }}
+              >
+                THE ANSWER IS {qotd.correct}
+              </div>
+            )}
+          </div>
+        </AbsoluteFill>
       )}
 
       {scene === "countdown" && (
