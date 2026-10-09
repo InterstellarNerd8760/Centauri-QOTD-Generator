@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "selection": "first unpublished question in sequence order",
+  "selection": "first unpublished question in sequence order; prototype and rendered are not published",
   "items": [
     {
       "sequence": 1,
@@ -1200,7 +1200,7 @@
       "sequence": 200,
       "exam": "technician",
       "id": "T5D01",
-      "status": "unpublished"
+      "status": "prototype"
     },
     {
       "sequence": 201,
@@ -3378,7 +3378,7 @@
       "sequence": 563,
       "exam": "general",
       "id": "G4A05",
-      "status": "unpublished"
+      "status": "prototype"
     },
     {
       "sequence": 564,
