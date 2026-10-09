@@ -17,6 +17,10 @@ Within each exam class, select questions using a controlled randomization method
 
 This keeps the feed varied while preserving a deterministic record of what has already been used.
 
+## Important status distinction
+
+A rendered video is not a published post. Keep prototype or rendered status until the user explicitly confirms publication. As of this update, T1B02, T5D01, and G4A05 are prototypes only; no QOTD posts have been published.
+
 ## States
 
 - unpublished
